@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-function Form(props) {
+const Form = props => {
 
-    const [ member, setMember] = useState({name:'', age: 0, favColor:''})
+    const [ member, setMember] = useState({name:'', age: '', favColor:''})
 
     // const [ team, setTeam ] = useState([])
 
@@ -13,7 +13,7 @@ function Form(props) {
     const submitHandler = event => {
         event.preventDefault()
         props.setTeam(prevTeam => [ ...prevTeam, member ])
-        setTeam({ name: '' })
+        setMember({ name: '', age: '', favColor: '' })
     }
 
 
@@ -24,21 +24,23 @@ function Form(props) {
 
                 <label>
                     Name:
-                    <input name = 'name' value={member.name} onChange = {changeHandler} />
+                    <input required name = 'name' value = { member.name } onChange = { changeHandler } type = 'text'/>
                 </label>
                 <br />
                 <label>
-                <input name = 'age' value={member.age} onChange = {changeHandler} type='number'/>
+                    <input name = 'age' value = { member.age } onChange = { changeHandler } type = 'number'/>
                 </label>
                 <br />
                 <label>
-                    <select name = 'favColor'/>
-                    <option value = '1'>Red</option>
-                    <option value = '2'>Blue</option>
-                    <option value = '3'>Green</option>
-                    <option value = '4'>Vantablack</option>
+                    <select name = 'favColor' value={ member.favColor } onChange = { changeHandler }>
+                    <option value = ''></option>
+                    <option value = 'Red'>Red</option>
+                    <option value = 'Blue'>Blue</option>
+                    <option value = 'Green'>Green</option>
+                    <option value = 'Vantablack'>Vantablack</option>
+                    </select>
                 </label>
-
+                <button type = 'submit'>Submit</button>
             </form>
 
 
@@ -46,3 +48,5 @@ function Form(props) {
 
     )
 }
+
+export default Form
